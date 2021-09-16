@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<!-- product-list -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <!-- sidenav-section -->
+                    <div id='cssmenu'>
+                        <ul>
+                            
+                            {% for x in cat %}
+                            <li class='has-sub'><a href="{% url 'product_list' %}?cid={{x.name}}">{{x.name}}</a>
+                              {% endfor %}
+                                
+                            </li>
+                          
+                        </ul>
+                    </div>
+                    <!-- /.sidenav-section -->
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb10 alignright">
+                            <form>
+                                <div class="select-option form-group">
+                                    <select name="select" class="form-control">
+                                        <option value="">Select</option>
+                                        <option value="">Best Match</option>
+                                        <option value="">Low Price</option>
+                                        <option value="">High Price</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- product -->
+                        
+                        {% for x in product %}
+                            
+                            
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb30">
+                            <div class="product-block">
+                                <div class="product-img"><img src="{{x.img.url}}" alt=""></div>
+                                <div class="product-content">
+                                    <h5><a href="#" class="product-title">{{x.name}}<strong></strong></a></h5>
+                                    <div class="product-meta"><a href="#" class="product-price">{{x.price}}</a>
+                                        <a href="#" class="discounted-price">{{x.dis_price}}</a>
+                                        <span class="offer-price">20%off</span>
+                                    </div>
+                                    <div class="shopping-btn">
+                                        <a href="#" class="product-btn btn-like"><i class="fa fa-heart"></i></a>
+                                        <a href="{% url 'add_to_cart' x.id %}" class="product-btn btn-cart"><i class="fa fa-shopping-cart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- /.product -->
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.product-list -->
+    {% endblock body %}
